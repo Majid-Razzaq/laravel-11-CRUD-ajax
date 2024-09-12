@@ -5,8 +5,21 @@
          <div class="row ">
              <div class="col-md-8 mx-auto mt-5">
                  @include('layouts.message')
-                 <a href="{{ route('form.create') }}" class="btn btn-primary float-end">Create</a>
                  <h2>Laravel 11 CRUD with Ajax</h2>
+                 
+                 <form action="" method="get">
+                 <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-lg-2 col-md-3">
+                        <a href="{{ route('form.create') }}" class="btn btn-primary w-100">Create</a>
+                    </div>
+                    <div class="col-lg-6 col-md-7 d-flex">
+                            <input type="text" value="{{ Request::get('keyword') }}" class="form-control form-control-lg me-2" name="keyword" placeholder="Search by title">
+                            <button class="btn btn-primary btn-lg" style="min-width: 100px;"><i class="fa-solid fa-magnifying-glass"></i> Search</button>                                                                    
+                        </form>
+                    </div>
+                </div>
+            </form>
+                
                  <table class="table table-striped table-bordered table-hover mt-4">
                      <thead class="table-dark">
                          <th >Title</th>

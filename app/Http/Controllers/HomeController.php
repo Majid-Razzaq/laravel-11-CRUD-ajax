@@ -8,12 +8,21 @@ use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $books = Book::orderBy('created_at','ASC')->paginate(5);
-        return view('lists',[
+    public function index(Request $request){
+        $query = Book::orderBy('created_at', 'DESC');
+        
+        if (!empty($request->keyword)) {
+            $query->where('title', 'like', '%'.$request->keyword.'%');
+        }
+    
+        $query->orderBy('created_at', 'ASC');
+        $books = $query->paginate(5);
+    
+        return view('lists', [
             'books' => $books,
         ]);
     }
+    
 
     public function create(){
         return view('create');
